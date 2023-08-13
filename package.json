@@ -2,12 +2,12 @@
   "name": "vinylrecordsapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.ts -V",
     "compile": "npx tsc",
-    "start": "node ./dist/server.js"
+    "start": "node ./dist/server.ts"
   },
   "author": "",
   "license": "ISC",
