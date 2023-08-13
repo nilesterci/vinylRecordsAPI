@@ -3,15 +3,17 @@ import discRouter from "./routers/discRouter";
 import cors from "cors";
 import helmet from "helmet";
 import swaggerDocs from "../docs/swagger.json";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const express = require("express");
 const app = express();
-const port = 3000;
-const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 
 app.use(express.json());
 
+app.use("/disc", discRouter);
 app.use('/', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.use(
@@ -19,10 +21,6 @@ app.use(
     extended: true,
   })
 );
-
-
-
-app.use("/disc", discRouter);
 
 app.use(morgan('tiny'));
 
@@ -35,9 +33,6 @@ app.use((err, req, res, next) => {
   console.error(err.message, err.stack);
   res.status(statusCode).json({ message: err.message });
   return;
-});
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
 });
 
 export default app;
