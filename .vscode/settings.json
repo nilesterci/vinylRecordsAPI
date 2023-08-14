@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/8fd2e20d-c622-44ca-bcae-6898f18d978e/resourceGroups/recursos1/providers/Microsoft.Web/sites/vinyldisc",
+    "appService.deploySubpath": "dist"
+}

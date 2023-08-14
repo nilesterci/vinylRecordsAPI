@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts -V",
     "compile": "npx tsc",
-    "start": "node ./dist/server.ts"
+    "start": "node ./dist/src/server.js"
   },
   "author": "",
   "license": "ISC",
