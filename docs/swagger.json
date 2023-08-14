@@ -39,12 +39,12 @@
           "200": {
             "description": "Success",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ListDiscs"
                 }
               },
-              "application/json": {
+              "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/ListDiscs"
                 }
@@ -74,12 +74,12 @@
         ],
         "requestBody": {
           "content": {
-            "application/json-patch+json": {
+            "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ListDiscs"
               }
             },
-            "application/json": {
+            "application/json-patch+json": {
               "schema": {
                 "$ref": "#/components/schemas/ListDiscs"
               }
