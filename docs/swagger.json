@@ -9,6 +9,10 @@
     {
       "url": "http://localhost:3200",
       "description": "Api Testes"
+    },
+    {
+      "url": "https://vinyldisc.azurewebsites.net",
+      "description": "Api Produção"
     }
   ],
   "paths": {
