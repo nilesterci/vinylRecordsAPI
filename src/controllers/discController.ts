@@ -7,8 +7,7 @@ async function getDisc(req, res, next) {
 }
 
 async function postDisc(req, res, next) {
-    console.log("🚀🚀🚀🚀🚀🚀🚀🚀🚀 ~ req:", req.body)
-    // const postDisc = await discService.postDisc(req.body);
+    const postDisc = await discService.postDisc(req.body);
     res.json(postDisc);
 }
 

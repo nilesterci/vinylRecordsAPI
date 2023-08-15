@@ -16,11 +16,66 @@
     }
   ],
   "paths": {
+    "/auth": {
+      "post": {
+        "tags": ["Authentication"],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Auth"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/disc": {
       "get": {
-        "tags": [
-          "Disc"
-        ],
+        "tags": ["Disc"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "idDisc",
@@ -63,9 +118,8 @@
         }
       },
       "post": {
-        "tags": [
-          "Disc"
-        ],
+        "tags": ["Disc"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "version",
@@ -181,6 +235,27 @@
           }
         },
         "additionalProperties": false
+      },
+      "Auth": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "nullable": false
+          },
+          "password": {
+            "type": "string",
+            "nullable": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

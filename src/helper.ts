@@ -8,9 +8,14 @@ function getOffset(currentPage = 1, listPerPage = 10) {
     }
     return rows;
   }
+
+  function emptyOrRow(rows){
+    return rows[0];
+  }
   
   module.exports = {
     getOffset,
-    emptyOrRows
+    emptyOrRows,
+    emptyOrRow
   };
   
