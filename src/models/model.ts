@@ -1,18 +1,55 @@
-export default class Disc {
-  id: number;
-  name: string;
-  cpf: string;
+const Sequelize = require("sequelize");
+const database = require("../config");
 
-  private static nextId = 1;
+const User = database.define("user", {
+  iduser: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
 
-  constructor(name: string, cpf: string) {
-    this.id = Disc.nextId++;
-    this.name = name;
-    this.cpf = cpf;
+const Disc = database.define(
+  "disc",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true,
+      allowNull: false,
+      primaryKey: true,
+    },
+    title: {
+      type: Sequelize.STRING(100),
+    },
+    subtitle: {
+      type: Sequelize.STRING(50),
+    },
+    year: {
+      type: Sequelize.INTEGER,
+    },
+    code: Sequelize.STRING(30),
+    price: {
+      type: Sequelize.DOUBLE,
+    },
+    observation: Sequelize.STRING(500),
+    lyricsquantity: Sequelize.INTEGER,
+    condition: Sequelize.STRING(10),
+  },
+  {
+    timestamps: false,
   }
-}
+);
 
-export interface Teste {
-  id: number;
-  name: string;
-}
+module.exports = {
+  Disc,
+  User,
+};

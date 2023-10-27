@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon src/app.ts -V",
     "compile": "npx tsc",
-    "start": "node ./dist/src/app.js"
+    "start": "node ./dist/src/app.js",
+    "migration": "npx sequelize-cli db:migrate"
   },
   "author": "",
   "license": "ISC",
@@ -17,10 +18,12 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "express-rate-limit": "^7.0.0",
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.1",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
+    "sequelize": "^6.32.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   },

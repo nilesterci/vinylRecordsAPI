@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/', discController.getDisc);
 router.post('/', discController.postDisc);
+router.delete('/', discController.deleteDisc);
 
 export default router;

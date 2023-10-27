@@ -1,19 +1,9 @@
-import Disc from "../models/model";
-const helper = require("../helper");
-const db = require("./db");
-
+const models = require("../models/model");
 
 async function validateUser(user) {
+  const userSearch = await models.User.findOne({ where: { name: user } });
 
-  let sql = `SELECT iduser, name, password FROM user where name = '${user}'`;
-
-  const rows = await db.query(sql);
-
-  const data = helper.emptyOrRow(rows);
-
-  return {
-    data
-  };
+  return userSearch;
 }
 
 export default {

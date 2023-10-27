@@ -1,16 +1,20 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-const config = {
-  db: {
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize(
+  process.env.DATABASE,
+  process.env.USER,
+  process.env.PASSWORD,
+  {
+    dialect: process.env.DIALECT,
     host: process.env.SERVER,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
     port: process.env.PORTDB,
-    connectTimeout: 60000,
+    define: {
+        freezeTableName: true,
+    },
+    logging: true
   },
-  listPerPage: 10,
-};
+);
 
-module.exports = config;
+module.exports = sequelize;

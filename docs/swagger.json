@@ -3,7 +3,7 @@
   "info": {
     "title": "API Vinyl",
     "description": "API consulta de discos",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "servers": [
     {
@@ -171,6 +171,50 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Disc"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "idDisc",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -213,24 +257,37 @@
             "type": "integer",
             "nullable": true
           },
-          "released_year": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "name": {
+          "subtitle": {
             "type": "string",
             "nullable": true
           },
-          "githut_rank": {
+          "year": {
             "type": "boolean",
             "nullable": true
           },
-          "pypl_rank": {
-            "type": "boolean",
+          "code": {
+            "type": "string",
             "nullable": true
           },
-          "tiobe_rank": {
-            "type": "boolean",
+          "price": {
+            "type": "number",
+            "format": "currency",
+            "nullable": true
+          },
+          "observation": {
+            "type": "string",
+            "nullable": true
+          },
+          "lyricsquantity": {
+            "type": "integer",
+            "nullable": true
+          },
+          "condition": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -239,7 +296,7 @@
       "Auth": {
         "type": "object",
         "properties": {
-          "user": {
+          "login": {
             "type": "string",
             "nullable": false
           },

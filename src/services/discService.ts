@@ -10,8 +10,12 @@ async function postDisc(teste) {
   return await discRepository.postDisc(teste);
 }
 
+async function deleteDisc(idDisc) {
+  return await discRepository.deleteDisc(idDisc);
+}
 
 export default {
   getDisc,
-  postDisc
+  postDisc,
+  deleteDisc
 };
