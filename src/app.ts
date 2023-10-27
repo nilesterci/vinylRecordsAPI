@@ -10,7 +10,6 @@ import auth from "./repositories/auth";
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const password = "Matmat@67";
 
 dotenv.config();
 
@@ -63,7 +62,7 @@ app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 app.listen(PORT, () => console.log(`Server is running at ${PORT}.`));
 
-function encrypt() {
+function encrypt(password) {
   bcrypt
     .genSalt(saltRounds)
     .then((salt) => {
