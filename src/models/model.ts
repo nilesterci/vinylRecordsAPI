@@ -16,6 +16,9 @@ const User = database.define("user", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+},
+{
+  timestamps: false,
 });
 
 const Disc = database.define(
