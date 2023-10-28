@@ -42,10 +42,7 @@ app.post("/auth", async (req, res, next) => {
   let user = await auth.validateUser(req.body.login);
 
   if (user) {
-    if (isBase64(req.body.password)) {
-      req.body.password = atob(req.body.password);
-    }
-    let validate = await compare(req.body.password, user["password"]);
+    let validate = await compare(atob(req.body.password), user["password"]);
     if (validate) {
       const id = user["iduser"];
       const token = jwt.sign({ id }, process.env.SECRET, {
