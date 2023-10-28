@@ -31,16 +31,21 @@ app.use(limiter);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({
-  origin: 'http://localhost:4200'
-}));
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+  })
+);
 
 //authentication
 app.post("/auth", async (req, res, next) => {
   let user = await auth.validateUser(req.body.login);
 
   if (user) {
-    let validate = await compare(atob(req.body.password), user["password"]);
+    if (isBase64(req.body.password)) {
+      req.body.password = atob(req.body.password);
+    }
+    let validate = await compare(req.body.password, user["password"]);
     if (validate) {
       const id = user["iduser"];
       const token = jwt.sign({ id }, process.env.SECRET, {
@@ -68,11 +73,19 @@ function encrypt(password) {
     .then((salt) => {
       return bcrypt.hash(password, salt);
     })
-    .then((hash) => {
-    })
+    .then((hash) => {})
     .catch((err) => console.error(err.message));
 }
 
 async function compare(password, hashPass) {
   return await bcrypt.compare(password, hashPass);
+}
+
+function isBase64(str) {
+  if (str ==='' || str.trim() ===''){ return false; }
+  try {
+      return btoa(atob(str)) == str;
+  } catch (err) {
+      return false;
+  }
 }
