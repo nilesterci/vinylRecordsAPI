@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "http://localhost",
+    origin: "http://127.0.0.1:8100",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   })
 );
