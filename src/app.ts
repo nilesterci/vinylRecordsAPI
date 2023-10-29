@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   })
 );
