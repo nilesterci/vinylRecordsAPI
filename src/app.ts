@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://127.0.0.1:8100", "capacitor://localhost"],
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   })
 );
