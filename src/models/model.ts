@@ -32,6 +32,8 @@ const Log = database.define("log", {
     type: Sequelize.STRING,
     allowNull: false,
   }
+},  {
+  timestamps: false,
 });
 
 const Disc = database.define(

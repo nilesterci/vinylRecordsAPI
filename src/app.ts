@@ -40,7 +40,6 @@ let logger = async (req, res, next) => {
 
 app.use(limiter);
 
-// app.use(logger);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -50,8 +49,9 @@ app.use(
     origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
-);
-
+  );
+  
+  app.use(logger);
 //authentication
 app.post("/auth", async (req, res, next) => {
   let user = await auth.validateUser(req.body.login);
