@@ -26,7 +26,7 @@ const limiter = rateLimit({
   message: "Too many requests, please try again later",
 });
 
-const logger = async (req, res, next) => {
+let logger = async (req, res, next) => {
   let log = `
   ${req.hostname} 
   ${req.method} 
@@ -40,7 +40,7 @@ const logger = async (req, res, next) => {
 
 app.use(limiter);
 
-app.use(logger);
+// app.use(logger);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
