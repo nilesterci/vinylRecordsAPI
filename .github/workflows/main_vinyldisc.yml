@@ -22,8 +22,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          CI=false npm run build --if-present // I did this to skip warnings as errors, remove if you want
-          CI=false npm run test --if-present // I did this to skip warnings as errors, remove if you want
+          npm run compile
           
       - name: Zip artifact for deployment
         run: zip release.zip ./*
