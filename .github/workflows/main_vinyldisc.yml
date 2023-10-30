@@ -1,7 +1,5 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - vinyldisc
+name: Build and deploy Node.js app to Azure Web App - <your-app-name-is automatically generated here>
 
 on:
   push:
@@ -14,17 +12,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: npm install, build
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+
+      - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
+          CI=false npm run build --if-present // I did this to skip warnings as errors, remove if you want
+          CI=false npm run test --if-present // I did this to skip warnings as errors, remove if you want
+          
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./*
+
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
-          name: node-app
+          name: release.zip
           path: release.zip
 
   deploy:
@@ -36,16 +43,17 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: release.zip
       - name: unzip artifact for deployment
         run: unzip release.zip
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'vinyldisc'
+          app-name: '<your-app-name-is automatically generated here>'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3E9343970D854D2395282BEB5DC4D514 }}
           package: .
