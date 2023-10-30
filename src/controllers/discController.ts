@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import discService from '../services/discService';
 
 async function getDisc(req, res, next) {
-    console.log("🚀 ~ req.query:", req.query)
     const customers = await discService.getDisc(req.query.idDisc);
     res.json(customers);
 }

@@ -26,7 +26,21 @@ const limiter = rateLimit({
   message: "Too many requests, please try again later",
 });
 
+const logger = async (req, res, next) => {
+  let log = `
+  ${req.hostname} 
+  ${req.method} 
+  ${req.url} 
+  ${req.ip}`;
+
+  await auth.logger(log);
+
+  next();
+};
+
 app.use(limiter);
+
+app.use(logger);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -34,7 +48,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
 );
 
@@ -83,10 +97,12 @@ async function compare(password, hashPass) {
 }
 
 function isBase64(str) {
-  if (str ==='' || str.trim() ===''){ return false; }
+  if (str === "" || str.trim() === "") {
+    return false;
+  }
   try {
-      return btoa(atob(str)) == str;
+    return btoa(atob(str)) == str;
   } catch (err) {
-      return false;
+    return false;
   }
 }

@@ -6,6 +6,12 @@ async function validateUser(user) {
   return userSearch;
 }
 
+async function logger(log){
+  let logger = {log: log};
+  await models.Log.create(logger);
+}
+
 export default {
-  validateUser
+  validateUser,
+  logger
 };

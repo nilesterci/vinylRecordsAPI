@@ -21,6 +21,19 @@ const User = database.define("user", {
   timestamps: false,
 });
 
+const Log = database.define("log", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  log: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }
+});
+
 const Disc = database.define(
   "disc",
   {
@@ -55,4 +68,5 @@ const Disc = database.define(
 module.exports = {
   Disc,
   User,
+  Log
 };

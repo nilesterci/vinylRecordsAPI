@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     define: {
         freezeTableName: true,
     },
-    logging: true
+    logging: console.log
   },
 );
 
