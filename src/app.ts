@@ -1,7 +1,5 @@
-import morgan from "morgan";
 import discRouter from "./routers/discRouter";
 import cors from "cors";
-import helmet from "helmet";
 import swaggerDocs from "../docs/swagger.json";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
