@@ -1,5 +1,5 @@
 
-name: Build and deploy Node.js app to Azure Web App - <your-app-name-is automatically generated here>
+name: Build and deploy Node.js app to Azure Web App - 'vinyldisc'
 
 on:
   push:
@@ -53,7 +53,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: '<your-app-name-is automatically generated here>'
+          app-name: 'vinyldisc'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3E9343970D854D2395282BEB5DC4D514 }}
           package: .
