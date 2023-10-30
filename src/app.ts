@@ -51,7 +51,7 @@ app.use(
   })
   );
   
-  app.use(logger);
+  // app.use(logger);
 //authentication
 app.post("/auth", async (req, res, next) => {
   let user = await auth.validateUser(req.body.login);
