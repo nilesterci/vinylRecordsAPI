@@ -3,7 +3,7 @@
   "info": {
     "title": "API Vinyl",
     "description": "API consulta de discos",
-    "version": "1.0.2"
+    "version": "1.0.5"
   },
   "servers": [
     {
