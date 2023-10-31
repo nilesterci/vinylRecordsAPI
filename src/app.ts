@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://vinyldisc.azurewebsites.net",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })
   );
